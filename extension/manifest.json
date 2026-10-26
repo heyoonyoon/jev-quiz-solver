@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "QuizN Auto Solver",
+  "version": "1.0.0",
+  "description": "퀴즈앤 4지선다 문제를 Gemini로 풀고 자동으로 답을 클릭합니다.",
+  "background": { "service_worker": "background.js", "type": "module" },
+  "host_permissions": [
+    "https://www.quizn.show/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.typesafe.ai/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.quizn.show/*", "https://quizn.show/*"],
+      "js": ["hook.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://www.quizn.show/*", "https://quizn.show/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
